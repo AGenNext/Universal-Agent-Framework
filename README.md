@@ -91,6 +91,10 @@ over stdio/sockets out-of-process) make each language feel native.
 | **JIT authentication** | No standing access: ephemeral, per-action, time-boxed credentials minted just-in-time and expiring immediately — least privilege in time as well as scope. |
 | **Time-bound everything** | Every entity, grant, fact, trust assertion, plan, norm, and identity carries temporal validity and expires; nothing is permanent by default, and expired = untrusted. |
 | **Time as an anchor** | Time is the reference frame everything is pinned to — order, causality, provenance, reproducible point-in-time snapshots, and cross-domain synchronization. Time both limits authority and locates truth. |
+| **Durable executions** | A session is a durable workflow: execution state is the persisted, signed, replayable log, so it survives crashes, restarts, and long async waits and resumes exactly where it left off. |
+| **No single point of failure** | Resilience by redundancy: no central authority, a replicated/leader-elected kernel over a replicated journal, stateless supervised actors — components fail, the system does not. |
+| **Multi-channel connectivity** | Every node is reachable over multiple transports and redundant peer-to-peer paths with channel-independent UDCI addressing and store-and-forward when disconnected. |
+| **Tunnel is gated** | Every channel/tunnel is itself a gated boundary — mutual auth, connect-capability, JIT time-bound credential; no ungated path. Connecting grants reach, not trust. |
 | **Military-grade discipline** | Fail-safe/deny-by-default, rules of engagement, chain of command, verify-before-act, defense-in-depth, redundancy, and after-action review — uniform and non-negotiable. |
 
 ## Architecture at a glance
@@ -142,6 +146,7 @@ docs/        Architecture, design decisions (ADRs), and rationale
 - [`docs/LLM_ROLE.md`](./docs/LLM_ROLE.md) — the LLM as interpreter, translator, transformer (and as a library)
 - [`docs/AGENT_AS_ACTOR.md`](./docs/AGENT_AS_ACTOR.md) — agent as actor (and as tool); the actor model + accountable actor
 - [`docs/ACTIONS.md`](./docs/ACTIONS.md) — actions as commands; the command/event discipline
+- [`docs/DURABLE_EXECUTION.md`](./docs/DURABLE_EXECUTION.md) — durable, crash-tolerant, resumable executions via the replayable log
 - [`docs/CANONICAL_AGENTS.md`](./docs/CANONICAL_AGENTS.md) — the canonical real-world agent catalog
 - [`docs/ACCESS.md`](./docs/ACCESS.md) — Uniform Access Protocol: one fine-grained interface to every UDCI-named resource
 - [`docs/CLOUD_NATIVE.md`](./docs/CLOUD_NATIVE.md) — cloud-native, cloud-agnostic, K8s-native; agent-as-operator

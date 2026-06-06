@@ -93,6 +93,69 @@ agent inherits durability, self-healing, and horizontal scale.
                  cloud-agnostic: any conformant K8s, any cloud, on-prem, or edge
 ```
 
+## No single point of failure
+
+UAF is designed so that **no single component's failure halts the system** —
+resilience by redundancy at every level:
+
+- **No central authority.** [Federation](./FEDERATION.md) is peer-to-peer; there is
+  no global control plane to lose. Domains, devices, and tools **degrade
+  independently** — an edge node keeps operating disconnected and resyncs later.
+- **The kernel is not a singleton.** Within a domain the kernel is **replicated and
+  leader-elected** (or sharded by session). It holds no irreplaceable state: the
+  durable, signed [journal](./DURABLE_EXECUTION.md) is the source of truth, so any
+  replica can rebuild and continue.
+- **Stateless, supervised participants.** Any actor
+  ([agent-as-actor](./AGENT_AS_ACTOR.md)) can crash and be rescheduled; work resumes
+  by replay ([durable execution](./DURABLE_EXECUTION.md)) — no progress is lost.
+- **Replicated journal and artifacts.** The workspace log and the content-addressed
+  artifact store are replicated (multi-node / multi-AZ / multi-device); a
+  content-addressed artifact is fetchable and verifiable from *any* replica.
+- **Distributed enforcement.** Gates and governance run at **each** boundary, not a
+  central policy server — enforcement has no chokepoint either.
+
+Redundancy + replay + federation = **continuous availability**: components fail,
+the system does not.
+
+## Every node accessible and connected — multi-channel
+
+Connectivity itself must not be a single point of failure. Every node (kernel
+replica, actor, tool, device, domain peer) is **reachable over multiple channels**
+and connected through **redundant paths**:
+
+- **Transport redundancy.** A node is reachable via several transports at once —
+  in-process C ABI, stdio, local socket, WebSocket/HTTP, message channel, or a
+  federated link. If one channel drops, another carries the entries.
+- **Channel-independent addressing.** A node is named by its
+  [UDCI](./IDENTIFIERS.md) and reached via [uniform access](./ACCESS.md); the
+  identifier is decoupled from the channel, so resolution picks whatever path is
+  live — multipath with failover.
+- **Mesh, not hub.** Nodes connect peer-to-peer across
+  [domains and devices](./FEDERATION.md); there is no mandatory central relay whose
+  loss isolates a node.
+- **Disconnection-tolerant.** When no channel is available, the durable log is
+  store-and-forward: a node queues signed entries locally and syncs when any channel
+  returns ([durable execution](./DURABLE_EXECUTION.md)).
+- **Uniformly secured.** Every channel is zero-trust and encrypted in transit;
+  redundancy adds *paths*, not *trust* — each path is independently authenticated and
+  signed.
+
+### The tunnel is gated
+
+Zero trust applies to the **connection itself**, not only the entries on it. Every
+channel/tunnel is a [gated](./AGENT_AT_THE_GATES.md) boundary:
+
+- **Connecting is a gated act.** Establishing a tunnel requires mutual
+  [UDCI](./IDENTIFIERS.md) authentication, a capability *to connect*, and a
+  residency/jurisdiction check; the tunnel carries a [JIT, time-bound](./DATA_SECURITY.md)
+  credential that expires and can be revoked mid-session.
+- **No ungated path.** There is no backdoor, side channel, or out-of-band tunnel —
+  redundancy adds *gated* paths only. An ungated connection is, by definition, not
+  part of the system.
+- **Defense in depth persists.** Beyond connection-time gating, every entry on the
+  tunnel still passes the admission / dispatch / egress gates. **Connecting grants
+  reach, not trust.**
+
 > Status: design direction. CRDs and controllers are proposed here and will be
 > specified alongside the kernel implementation; nothing here changes the wire
 > protocol.
