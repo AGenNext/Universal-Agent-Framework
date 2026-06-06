@@ -69,6 +69,7 @@ over stdio/sockets out-of-process) make each language feel native.
 | **Secure by data model** | Every entry is protected, auditable, encrypted at rest and in transit, and **three-party signed** (author + gate + kernel) at each exchange. |
 | **Federated ecosystem** | Independent domains (nations, orgs, clouds, devices) interoperate peer-to-peer with no central authority — a **multi-nation, multi-device, multi-agent, multi-model** ecosystem. |
 | **Sovereign by boundary** | Cross-domain federation gates enforce residency/jurisdiction and re-sign at the border, giving verifiable cross-domain chain of custody. |
+| **World-grounded** | Reflects real-world constraints, conflicts, capabilities, knowledge, resources, theories, institutions, organizations, and the social-economic fabric as a modeled World Model — so plans are feasible, lawful, affordable, and accountable. |
 
 ## Architecture at a glance
 
@@ -116,6 +117,7 @@ docs/        Architecture, design decisions (ADRs), and rationale
 - [`docs/CANONICAL_AGENTS.md`](./docs/CANONICAL_AGENTS.md) — the canonical real-world agent catalog
 - [`docs/CLOUD_NATIVE.md`](./docs/CLOUD_NATIVE.md) — cloud-native, cloud-agnostic, K8s-native; agent-as-operator
 - [`docs/FEDERATION.md`](./docs/FEDERATION.md) — federated, multi-nation/-device/-agent/-model ecosystem
+- [`docs/WORLD_MODEL.md`](./docs/WORLD_MODEL.md) — reflecting real-world constraints, conflicts, knowledge, institutions, economics
 - [`docs/HUMAN_AT_THE_EDGE.md`](./docs/HUMAN_AT_THE_EDGE.md) — human as a first-class, edge-deployed participant
 - [`docs/AGENT_AT_THE_GATES.md`](./docs/AGENT_AT_THE_GATES.md) — agents as policy-enforcement points at every boundary
 - [`docs/adr/0001-kernel-language.md`](./docs/adr/0001-kernel-language.md) — kernel implementation decision
