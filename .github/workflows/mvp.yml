@@ -1,0 +1,44 @@
+name: MVP Compatibility
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  mvp:
+    name: Validate edge-native MVP loop
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build
+        run: cargo build --locked
+
+      - name: Run MVP task
+        run: |
+          rm -rf .uaf reports/out
+          cargo run -- run \
+            --task examples/tasks/basic-task.json \
+            --workspace .uaf/session.jsonl
+
+      - name: Replay workspace
+        run: cargo run -- replay --workspace .uaf/session.jsonl
+
+      - name: Validate workspace
+        run: cargo run -- validate --workspace .uaf/session.jsonl
+
+      - name: Generate report
+        run: |
+          cargo run -- report \
+            --workspace .uaf/session.jsonl \
+            --out reports/out/session-summary.md
+
+      - name: Assert tangible outputs
+        run: |
+          test -s .uaf/session.jsonl
+          test -s reports/out/session-summary.md
+          grep -q 'UAF Session Summary' reports/out/session-summary.md
