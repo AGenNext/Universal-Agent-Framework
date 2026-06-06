@@ -32,7 +32,72 @@
       "type": "array",
       "items": { "enum": ["text", "image", "audio", "video"] }
     },
+    "ctx": { "$ref": "#/$defs/ctx" },
     "body": { "type": "object" }
   },
-  "additionalProperties": true
+  "additionalProperties": true,
+  "$defs": {
+    "ctx": {
+      "type": "object",
+      "description": "First-class cross-cutting primitives. All optional and additive.",
+      "properties": {
+        "identity": {
+          "type": "object",
+          "properties": {
+            "actor": { "type": "string" },
+            "credential": { "type": "string" },
+            "signature": { "type": "string" }
+          }
+        },
+        "time": {
+          "type": "object",
+          "properties": {
+            "valid_from": { "type": "string", "format": "date-time" },
+            "valid_until": { "type": "string", "format": "date-time" },
+            "logical": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "location": {
+          "type": "object",
+          "properties": {
+            "zone": { "enum": ["edge", "cloud", "on-prem", "device"] },
+            "region": { "type": "string" },
+            "device": { "type": "string" },
+            "residency": { "type": "string" }
+          }
+        },
+        "trust": {
+          "type": "object",
+          "properties": {
+            "level": { "enum": ["anonymous", "asserted", "attested", "verified"] },
+            "score": { "type": "number", "minimum": 0, "maximum": 1 },
+            "basis": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "relation": {
+          "type": "object",
+          "properties": {
+            "delegated_by": { "type": "string" },
+            "depends_on": { "type": "array", "items": { "type": "string" } },
+            "org": { "type": "string" }
+          }
+        },
+        "signatures": {
+          "type": "array",
+          "description": "Three-party attestation: author, gate, kernel.",
+          "items": {
+            "type": "object",
+            "required": ["by", "role", "alg", "sig"],
+            "properties": {
+              "by": { "type": "string" },
+              "role": { "enum": ["author", "gate", "kernel"] },
+              "alg": { "type": "string" },
+              "sig": { "type": "string" },
+              "over": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
 }

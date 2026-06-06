@@ -64,6 +64,9 @@ over stdio/sockets out-of-process) make each language feel native.
 | **Canonical real-world agents** | A curated standard library of reference agents bound to real tasks, not toy demos. |
 | **Human at the Edge** | The human is a first-class participant at the decision boundary (and the network edge), gating high-stakes steps. |
 | **Agent at the Gates** | An agent stands as a policy-enforcement point at every boundary; agents gate at scale, humans gate the residual. |
+| **Everything as data** | No out-of-band control channels — tasks, plans, policies, trust, even control flow are entries on one replayable, auditable log. |
+| **Five primitives** | **Trust, Time, Location, Identity, Relation** are first-class on every entry (the `ctx` block); all policy is a predicate over them. |
+| **Secure by data model** | Every entry is protected, auditable, encrypted at rest and in transit, and **three-party signed** (author + gate + kernel) at each exchange. |
 
 ## Architecture at a glance
 
@@ -105,6 +108,8 @@ docs/        Architecture, design decisions (ADRs), and rationale
 
 - [`spec/PROTOCOL.md`](./spec/PROTOCOL.md) — the Universal Agent Protocol (normative)
 - [`spec/conformance.md`](./spec/conformance.md) — conformance levels and rules
+- [`docs/DESIGN_PRINCIPLES.md`](./docs/DESIGN_PRINCIPLES.md) — everything-as-data + the five primitives
+- [`docs/DATA_SECURITY.md`](./docs/DATA_SECURITY.md) — protection, audit, encryption, three-party signing
 - [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) — kernel, runtime core, multi-platform/-language design
 - [`docs/CANONICAL_AGENTS.md`](./docs/CANONICAL_AGENTS.md) — the canonical real-world agent catalog
 - [`docs/CLOUD_NATIVE.md`](./docs/CLOUD_NATIVE.md) — cloud-native, cloud-agnostic, K8s-native; agent-as-operator

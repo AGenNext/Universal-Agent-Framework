@@ -22,6 +22,10 @@ as in RFC 2119.
 2. **The workspace is the source of truth.** All state — observations, plans,
    critiques, artifacts, results — lives as entries. A session can be fully
    reconstructed by replaying its workspace.
+2a. **Everything as data.** There are no out-of-band control channels. Tasks,
+   plans, policies, tool capabilities, phase transitions, trust verdicts, even
+   human approvals are all **entries**. Control flow *is* data on the workspace,
+   so the entire system is inspectable, replayable, and auditable as one log.
 3. **Two decoupled phases.** Every task moves through **Cognition** (understand
    + plan) and **Deliberation** (execute), per MAGUS.
 4. **Roles are conditioning, not classes.** An agent's role (`perceiver`,
@@ -256,7 +260,47 @@ Breaking changes bump MAJOR; participants MUST refuse mismatched MAJOR versions.
 
 ---
 
-## 10. Security considerations
+## 10. Core primitives — the context block
+
+Every entry MAY carry a `ctx` object that makes five cross-cutting concerns
+**first-class primitives** rather than ad-hoc metadata. Gates
+([Agent at the Gates](../docs/AGENT_AT_THE_GATES.md)) and the kernel read `ctx`
+to make admission, routing, and policy decisions; the human edge
+([Human at the Edge](../docs/HUMAN_AT_THE_EDGE.md)) reads it to decide what needs
+review.
+
+```json
+"ctx": {
+  "identity": { "actor": "planner-1", "credential": "spiffe://...", "signature": "ed25519:..." },
+  "time":     { "valid_from": "2026-06-06T18:20:00Z", "valid_until": "2026-06-06T18:25:00Z", "logical": 12 },
+  "location": { "zone": "edge", "region": "eu-west", "device": "kiosk-7", "residency": "EU" },
+  "trust":    { "level": "attested", "score": 0.92, "basis": ["signature", "gate:admission"] },
+  "relation": { "delegated_by": "client-0", "depends_on": ["s1"], "org": "acme" }
+}
+```
+
+| Primitive | Question | Drives |
+| --- | --- | --- |
+| **Identity** | *Who* authored this? | authentication, signing, attribution; the gate's ingress check |
+| **Time** | *When* is this valid? | ordering, causality, validity windows, expiry of approvals/credentials |
+| **Location** | *Where* did it originate / may it go? | edge-vs-cloud routing, data residency, locality of artifacts |
+| **Trust** | *How much* do we believe it? | gating thresholds, escalation to a human, capability eligibility |
+| **Relation** | *How* does it relate to other entries/actors? | causality, delegation chains, org/social structure |
+
+Rules:
+
+- `ctx` is **additive and optional**; absence means "unspecified," and a host's
+  policy decides the default (e.g. `trust.level = "anonymous"`).
+- `ctx.time` refines, and MUST be consistent with, the envelope `ts`/`seq`.
+- `ctx.relation.depends_on` / `delegated_by` complement envelope `in_reply_to`
+  (causality) with semantic relationships.
+- A gate MAY raise or lower `ctx.trust` and MUST record the basis; downstream
+  participants read the updated value.
+
+These five primitives are the vocabulary the security model below is expressed
+in. See [`../docs/DESIGN_PRINCIPLES.md`](../docs/DESIGN_PRINCIPLES.md).
+
+## 11. Security considerations
 
 - Entries cross trust boundaries (out-of-process / remote participants). A host
   MUST treat all `body` content — especially `task`, `tool_result`, and
@@ -265,3 +309,21 @@ Breaking changes bump MAJOR; participants MUST refuse mismatched MAJOR versions.
   tools that advertised the matching capability via `hello`.
 - Artifact `uri`s MUST be resolved through a policy the host controls; a host
   SHOULD NOT auto-fetch arbitrary URIs.
+
+### Data protection (normative)
+
+All entries and artifacts MUST be **protected, auditable, secured, encrypted at
+rest, and encrypted in transit**, and MUST be **three-party signed at each
+exchange**:
+
+| # | Signer | Attests | Primitive |
+| --- | --- | --- | --- |
+| 1 | Author | authorship of envelope + body | Identity |
+| 2 | Gate | policy admission at the boundary | Trust |
+| 3 | Kernel | the assigned `seq` / ordering | Time |
+
+An entry is durable and honored only with this **3-of-3 attestation**, recorded
+in `ctx.signatures` (and reflected in `ctx.trust.basis`). A verifier MUST reject
+entries missing any signature, making the log tamper-evident and giving
+non-repudiation across authorship, policy, and ordering. Full requirements:
+[`../docs/DATA_SECURITY.md`](../docs/DATA_SECURITY.md).
