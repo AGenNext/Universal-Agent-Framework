@@ -74,6 +74,7 @@ over stdio/sockets out-of-process) make each language feel native.
 | **Digital twins** | Real-world entities have live, synchronized twins: agents observe (reality→twin), rehearse in simulation, and actuate (twin→reality) through gated commands — rehearse in the twin, act on the world. |
 | **Epistemic humility** | No model is absolute truth — every ontology, world model, and even a "theory of everything" is a provisional, versioned, revisable theory, including UAF's own axioms. |
 | **Multiple trinities** | A recurring design motif: two elements act and a third verifies/mediates/anchors (perceive·plan·reflect; author·kernel·gate; observe·actuate·reconcile) — the sanity check made structural. |
+| **Advancement of the fittest, support to the weak** | Measured selection advances the fittest (routing, resources, promotion) while solidarity supports the weak (fallbacks, scaffolding, fairness, budget floors, diversity) — both held in tension by governance. |
 | **Constitutionally governed** | **Rule, Guardrail, Constitution, Duty & Right** are first-class deontic concepts; a per-domain constitution outranks all other norms and is enforced at the gates. |
 | **Axiomatic** | Everything is **data · defined · measurable · published/versioned/signed · managed · governed · a product** — the invariants that make the system inspectable, reproducible, controlled, and accountable. |
 | **Composable** | Primitives, modules, features/products, and solutions compose through one seam (UAP + uniform access over UDCIs); composition nests recursively and preserves every guarantee. |
@@ -160,6 +161,7 @@ docs/        Architecture, design decisions (ADRs), and rationale
 - [`docs/WORLD_MODEL.md`](./docs/WORLD_MODEL.md) — reflecting real-world constraints, conflicts, knowledge, institutions, economics (+ epistemic humility)
 - [`docs/DIGITAL_TWIN.md`](./docs/DIGITAL_TWIN.md) — digital twin theory: observe, rehearse, actuate
 - [`docs/TRINITIES.md`](./docs/TRINITIES.md) — the recurring three-fold design motif
+- [`docs/ECOSYSTEM_DYNAMICS.md`](./docs/ECOSYSTEM_DYNAMICS.md) — advancement of the fittest, support to the weak
 - [`docs/HUMAN_AT_THE_EDGE.md`](./docs/HUMAN_AT_THE_EDGE.md) — human as a first-class, edge-deployed participant
 - [`docs/AGENT_AT_THE_GATES.md`](./docs/AGENT_AT_THE_GATES.md) — agents as policy-enforcement points at every boundary
 - [`docs/adr/0001-kernel-language.md`](./docs/adr/0001-kernel-language.md) — kernel implementation decision
