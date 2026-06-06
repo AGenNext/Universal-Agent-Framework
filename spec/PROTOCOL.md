@@ -327,3 +327,8 @@ in `ctx.signatures` (and reflected in `ctx.trust.basis`). A verifier MUST reject
 entries missing any signature, making the log tamper-evident and giving
 non-repudiation across authorship, policy, and ordering. Full requirements:
 [`../docs/DATA_SECURITY.md`](../docs/DATA_SECURITY.md).
+
+When an entry crosses a domain boundary in a federated deployment, a federation
+gate adds a fourth `boundary` signature after verifying the origin's 3-of-3,
+giving a verifiable cross-domain chain of custody. See
+[`../docs/FEDERATION.md`](../docs/FEDERATION.md).

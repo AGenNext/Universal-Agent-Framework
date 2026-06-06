@@ -90,7 +90,7 @@
             "required": ["by", "role", "alg", "sig"],
             "properties": {
               "by": { "type": "string" },
-              "role": { "enum": ["author", "gate", "kernel"] },
+              "role": { "enum": ["author", "gate", "kernel", "boundary"] },
               "alg": { "type": "string" },
               "sig": { "type": "string" },
               "over": { "type": "string" }
