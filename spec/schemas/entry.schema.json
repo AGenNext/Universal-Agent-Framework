@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uaf.dev/schemas/entry.schema.json",
+  "title": "UAP Entry",
+  "description": "The universal envelope for every message on the workspace.",
+  "type": "object",
+  "required": ["uap", "id", "session", "ts", "phase", "from", "role", "kind", "body"],
+  "properties": {
+    "uap": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" },
+    "id": { "type": "string", "format": "uuid" },
+    "session": { "type": "string", "format": "uuid" },
+    "seq": { "type": "integer", "minimum": 0 },
+    "ts": { "type": "string", "format": "date-time" },
+    "phase": { "enum": ["cognition", "deliberation"] },
+    "from": { "type": "string", "minLength": 1 },
+    "role": {
+      "type": "string",
+      "pattern": "^(client|orchestrator|perceiver|planner|reflector|executor|tool|x-[a-z0-9-]+)$"
+    },
+    "kind": {
+      "enum": [
+        "hello", "task", "observation", "plan", "critique", "revision",
+        "phase_transition", "step_dispatch", "tool_call", "tool_result",
+        "artifact", "result", "error"
+      ]
+    },
+    "in_reply_to": {
+      "type": "array",
+      "items": { "type": "string", "format": "uuid" }
+    },
+    "modalities": {
+      "type": "array",
+      "items": { "enum": ["text", "image", "audio", "video"] }
+    },
+    "ctx": { "$ref": "#/$defs/ctx" },
+    "body": { "type": "object" }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "ctx": {
+      "type": "object",
+      "description": "First-class cross-cutting primitives. All optional and additive.",
+      "properties": {
+        "identity": {
+          "type": "object",
+          "properties": {
+            "actor": { "type": "string" },
+            "did": { "type": "string", "description": "Universal Decentralized Canonical Identifier (did:uaf:... or uaf://...)" },
+            "credential": { "type": "string" },
+            "signature": { "type": "string" }
+          }
+        },
+        "time": {
+          "type": "object",
+          "properties": {
+            "valid_from": { "type": "string", "format": "date-time" },
+            "valid_until": { "type": "string", "format": "date-time" },
+            "logical": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "location": {
+          "type": "object",
+          "properties": {
+            "zone": { "enum": ["edge", "cloud", "on-prem", "device"] },
+            "region": { "type": "string" },
+            "device": { "type": "string" },
+            "residency": { "type": "string" }
+          }
+        },
+        "trust": {
+          "type": "object",
+          "properties": {
+            "level": { "enum": ["anonymous", "asserted", "attested", "verified"] },
+            "score": { "type": "number", "minimum": 0, "maximum": 1 },
+            "basis": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "relation": {
+          "type": "object",
+          "properties": {
+            "delegated_by": { "type": "string" },
+            "depends_on": { "type": "array", "items": { "type": "string" } },
+            "org": { "type": "string" }
+          }
+        },
+        "capability": {
+          "type": "object",
+          "description": "What the actor may do — declared/granted/scoped/verified authority.",
+          "properties": {
+            "grants": { "type": "array", "items": { "type": "string" }, "description": "Scoped grants, e.g. VERB:udci[#field]." },
+            "token": { "type": "string", "description": "JIT capability token." },
+            "expires": { "type": "string", "format": "date-time" }
+          }
+        },
+        "signatures": {
+          "type": "array",
+          "description": "Three-party attestation: author, gate, kernel.",
+          "items": {
+            "type": "object",
+            "required": ["by", "role", "alg", "sig"],
+            "properties": {
+              "by": { "type": "string" },
+              "role": { "enum": ["author", "gate", "kernel", "boundary"] },
+              "alg": { "type": "string" },
+              "sig": { "type": "string" },
+              "over": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

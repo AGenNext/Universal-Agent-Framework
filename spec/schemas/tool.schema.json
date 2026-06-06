@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uaf.dev/schemas/tool.schema.json",
+  "title": "UAP Tool capability descriptor",
+  "description": "Advertised by a `tool` participant inside its `hello` body.",
+  "type": "object",
+  "required": ["tool", "kind", "modalities_in", "modalities_out"],
+  "properties": {
+    "tool": { "type": "string", "minLength": 1 },
+    "kind": { "enum": ["understand", "generate"] },
+    "modalities_in": {
+      "type": "array",
+      "items": { "enum": ["text", "image", "audio", "video"] }
+    },
+    "modalities_out": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "enum": ["text", "image", "audio", "video"] }
+    },
+    "params_schema": { "type": "object" }
+  },
+  "additionalProperties": false
+}

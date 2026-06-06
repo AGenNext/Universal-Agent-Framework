@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uaf.dev/schemas/plan.schema.json",
+  "title": "UAP Plan body",
+  "description": "Body of a `plan` or `revision` entry.",
+  "type": "object",
+  "required": ["goal", "steps"],
+  "properties": {
+    "goal": { "type": "string", "minLength": 1 },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/step" }
+    }
+  },
+  "$defs": {
+    "artifactRef": {
+      "type": "object",
+      "required": ["modality", "uri"],
+      "properties": {
+        "modality": { "enum": ["text", "image", "audio", "video"] },
+        "uri": { "type": "string" },
+        "mime": { "type": "string" },
+        "meta": { "type": "object" }
+      }
+    },
+    "step": {
+      "type": "object",
+      "required": ["id", "type", "modality", "instruction"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "type": { "enum": ["understand", "generate"] },
+        "modality": { "enum": ["text", "image", "audio", "video"] },
+        "instruction": { "type": "string", "minLength": 1 },
+        "tool": { "type": ["string", "null"] },
+        "depends_on": { "type": "array", "items": { "type": "string" } },
+        "inputs": { "type": "array", "items": { "$ref": "#/$defs/artifactRef" } }
+      },
+      "additionalProperties": false
+    }
+  }
+}
