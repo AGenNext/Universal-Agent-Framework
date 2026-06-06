@@ -71,6 +71,9 @@ over stdio/sockets out-of-process) make each language feel native.
 | **Federated ecosystem** | Independent domains (nations, orgs, clouds, devices) interoperate peer-to-peer with no central authority — a **multi-nation, multi-device, multi-agent, multi-model** ecosystem. |
 | **Sovereign by boundary** | Cross-domain federation gates enforce residency/jurisdiction and re-sign at the border, giving verifiable cross-domain chain of custody. |
 | **World-grounded** | Reflects real-world constraints, conflicts, capabilities, knowledge, resources, theories, institutions, organizations, and the social-economic fabric as a modeled World Model — so plans are feasible, lawful, affordable, and accountable. |
+| **Digital twins** | Real-world entities have live, synchronized twins: agents observe (reality→twin), rehearse in simulation, and actuate (twin→reality) through gated commands — rehearse in the twin, act on the world. |
+| **Epistemic humility** | No model is absolute truth — every ontology, world model, and even a "theory of everything" is a provisional, versioned, revisable theory, including UAF's own axioms. |
+| **Multiple trinities** | A recurring design motif: two elements act and a third verifies/mediates/anchors (perceive·plan·reflect; author·kernel·gate; observe·actuate·reconcile) — the sanity check made structural. |
 | **Constitutionally governed** | **Rule, Guardrail, Constitution, Duty & Right** are first-class deontic concepts; a per-domain constitution outranks all other norms and is enforced at the gates. |
 | **Axiomatic** | Everything is **data · defined · measurable · published/versioned/signed · managed · governed · a product** — the invariants that make the system inspectable, reproducible, controlled, and accountable. |
 | **Composable** | Primitives, modules, features/products, and solutions compose through one seam (UAP + uniform access over UDCIs); composition nests recursively and preserves every guarantee. |
@@ -151,7 +154,9 @@ docs/        Architecture, design decisions (ADRs), and rationale
 - [`docs/ACCESS.md`](./docs/ACCESS.md) — Uniform Access Protocol: one fine-grained interface to every UDCI-named resource
 - [`docs/CLOUD_NATIVE.md`](./docs/CLOUD_NATIVE.md) — cloud-native, cloud-agnostic, K8s-native; agent-as-operator
 - [`docs/FEDERATION.md`](./docs/FEDERATION.md) — federated, multi-nation/-device/-agent/-model ecosystem
-- [`docs/WORLD_MODEL.md`](./docs/WORLD_MODEL.md) — reflecting real-world constraints, conflicts, knowledge, institutions, economics
+- [`docs/WORLD_MODEL.md`](./docs/WORLD_MODEL.md) — reflecting real-world constraints, conflicts, knowledge, institutions, economics (+ epistemic humility)
+- [`docs/DIGITAL_TWIN.md`](./docs/DIGITAL_TWIN.md) — digital twin theory: observe, rehearse, actuate
+- [`docs/TRINITIES.md`](./docs/TRINITIES.md) — the recurring three-fold design motif
 - [`docs/HUMAN_AT_THE_EDGE.md`](./docs/HUMAN_AT_THE_EDGE.md) — human as a first-class, edge-deployed participant
 - [`docs/AGENT_AT_THE_GATES.md`](./docs/AGENT_AT_THE_GATES.md) — agents as policy-enforcement points at every boundary
 - [`docs/adr/0001-kernel-language.md`](./docs/adr/0001-kernel-language.md) — kernel implementation decision

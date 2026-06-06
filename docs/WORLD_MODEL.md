@@ -81,6 +81,33 @@ Resources are scarce and **accounted**, not assumed free:
   cross-agent and cross-domain ([Federation](./FEDERATION.md)) collaboration
   *mean* the same thing on both sides.
 
+## Theory of everything is a theory (epistemic humility)
+
+No model is absolute truth. Every model, ontology, World Model, digital twin — and
+even a "theory of everything" — is a **theory**: explicit, assumption-bearing,
+confidence-rated, time-bound, versioned, and **revisable**. UAF builds this
+humility in, because a system that acts in the world will confidently act on error
+unless it holds its models as provisional.
+
+- **The map is not the territory.** The World Model and its
+  [digital twins](./DIGITAL_TWIN.md) *approximate* reality; divergence is expected
+  and reconciled, never assumed away.
+- **Fallibilism.** Any belief can be wrong. Contradicting evidence is first-class —
+  it triggers [revision](#conflict-and-arbitration), not denial. Knowledge carries
+  confidence (Trust) and validity (Time).
+- **Provisional by construction.** Theories are cited in plans *with their
+  assumptions*; competing theories may coexist and be arbitrated; superseded
+  theories are versioned, not erased.
+- **Including this framework.** UAF's own axioms and principles are a theory —
+  defined, versioned, and open to amendment under its own
+  [governance](./GOVERNANCE.md). No self-exemption.
+- **Decisions hedge.** Under uncertainty, plans carry confidence and fallbacks; the
+  [sanity check](./DESIGN_PRINCIPLES.md) accounts for model risk; high-stakes calls
+  escalate to [the human](./HUMAN_AT_THE_EDGE.md).
+
+This is the guardrail against false certainty: hold every model — however
+comprehensive — as a theory, subject to evidence.
+
 ## Institutions and organizations
 
 - **Institutions** (law, regulation, norms, standards) are encoded as constraint
