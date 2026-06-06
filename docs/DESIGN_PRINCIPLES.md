@@ -69,6 +69,32 @@ the reference frame everything else is pinned to:
 So time both **limits authority** (bound) and **locates truth** (anchor): every
 fact, action, and grant is pinned to *when*.
 
+### Past is real, present is the edge
+
+UAF has a definite temporal ontology — and it explains the system's asymmetries:
+
+- **The past is real.** The append-only, signed **event** log is settled history —
+  immutable fact. Events (*what happened*) are never changed, only appended to; the
+  past is durable, replayable ground truth ([durable execution](./DURABLE_EXECUTION.md)).
+  You re-read the past exactly; you cannot rewrite it.
+- **The present is the edge.** The present is the active frontier — the head of the
+  log (latest `seq`) — where [commands](./ACTIONS.md) are issued,
+  [gates](./AGENT_AT_THE_GATES.md) decide, and the
+  [human at the edge](./HUMAN_AT_THE_EDGE.md) approves. **Action happens only at the
+  edge**: the boundary between settled past and unwritten future. This is the literal
+  and conceptual *edge* — now.
+- **The future is provisional.** Beyond the edge nothing is yet real: it is plan and
+  [simulation](./DIGITAL_TWIN.md) — a [theory](./WORLD_MODEL.md), rehearsed in twins,
+  never assumed. The future becomes real only by passing **through** the present edge
+  into the past.
+
+The system **writes forward only**: commands at the gated present, once executed and
+verified, settle into immutable past events. This is a temporal trinity —
+**Past (real) · Present (edge) · Future (provisional)** — and it grounds the
+asymmetry: the past is *trusted* because it is signed and settled; the present is
+*gated* because it is where change enters; the future is *hedged* because it is only
+theory.
+
 ## 3. Clarity
 
 Clarity is a first-class design constraint, not a documentation afterthought. A

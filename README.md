@@ -94,6 +94,7 @@ over stdio/sockets out-of-process) make each language feel native.
 | **JIT authentication** | No standing access: ephemeral, per-action, time-boxed credentials minted just-in-time and expiring immediately — least privilege in time as well as scope. |
 | **Time-bound everything** | Every entity, grant, fact, trust assertion, plan, norm, and identity carries temporal validity and expires; nothing is permanent by default, and expired = untrusted. |
 | **Time as an anchor** | Time is the reference frame everything is pinned to — order, causality, provenance, reproducible point-in-time snapshots, and cross-domain synchronization. Time both limits authority and locates truth. |
+| **Past is real, present is the edge** | The signed event log is immutable, trusted history; change happens only at the gated present (the edge); the future is provisional plan and simulation. The system writes forward only. |
 | **Durable executions** | A session is a durable workflow: execution state is the persisted, signed, replayable log, so it survives crashes, restarts, and long async waits and resumes exactly where it left off. |
 | **No single point of failure** | Resilience by redundancy: no central authority, a replicated/leader-elected kernel over a replicated journal, stateless supervised actors — components fail, the system does not. |
 | **Multi-channel connectivity** | Every node is reachable over multiple transports and redundant peer-to-peer paths with channel-independent UDCI addressing and store-and-forward when disconnected. |

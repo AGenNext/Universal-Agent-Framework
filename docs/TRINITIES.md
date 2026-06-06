@@ -21,6 +21,7 @@ checks it.
 | **Gate outcomes** ([gates](./AGENT_AT_THE_GATES.md)) | Pass · Block · **Escalate** | Escalate *defers to judgment* |
 | **Oversight** | Gate (prevent) · Human (judge) · **Log** (record) | the Log *makes it accountable* |
 | **Conformance** ([levels](../spec/conformance.md)) | L0 cognition · L1 single-modality · L2 any-to-any | increasing capability |
+| **Temporal** ([time](./DESIGN_PRINCIPLES.md)) | Past (real) · Present (**edge**) · Future (provisional) | the Present *gates* change between settled past and provisional future |
 
 ## The pattern: two act, the third checks
 
