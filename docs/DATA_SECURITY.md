@@ -18,6 +18,28 @@ expressed in terms of the five primitives.
 | **Encrypted in transit** | All transports (socket, channel, remote) use authenticated encryption (e.g. mTLS); in-process C-ABI exchanges stay within a single trust domain. |
 | **Three-party signed** | Every exchange accrues three independent signatures (below) before an entry is durable and honored. |
 
+## Zero trust
+
+UAF assumes **no implicit trust** — *never trust, always verify*:
+
+- **No perimeter trust.** Trust is never granted by network location, domain
+  membership, or a prior handshake. Every entry and every access is verified at
+  **every** boundary, including within a single domain.
+- **Per-request trust.** Trust is **computed** per entry from `ctx.trust` (with
+  identity, time, location), never assumed; a [gate](./AGENT_AT_THE_GATES.md) may
+  raise or lower it and records the basis.
+- **Authenticate and authorize every action.** Three-party signatures are
+  verified; capability and [governance](./GOVERNANCE.md) are gated; nothing
+  unsigned is honored.
+- **Continuous verification.** [Federation](./FEDERATION.md) re-evaluates trust at
+  each boundary (a peer's `verified` is not automatically local `verified`); `ctx`
+  validity windows expire trust over time.
+- **Least privilege & microsegmentation.** Fine-grained grants and layered gates
+  isolate every actor; a breach of one is not a breach of the system.
+
+Zero trust is the **posture**; the gates, five primitives, and three-party signing
+below are its **implementation**.
+
 ## Three-party signing at each exchange
 
 An entry becomes part of the immutable log only when it carries a **3-of-3

@@ -84,6 +84,11 @@ over stdio/sockets out-of-process) make each language feel native.
 | **Uniform, fine-grained access** | One interface (resolve/read/write/query/subscribe/invoke) to every UDCI-named resource, with access resolving down to the field/verb/capability under least privilege. |
 | **Modular** | Composition over monolith: everything outside the minimal kernel is an independently versioned, published, signed, swappable module. |
 | **Feature first** | The unit of design and delivery is the feature — a self-contained vertical slice (agents, tools, definitions, norms, access policy, tests) — not a technical layer. |
+| **LLM as interpreter / translator / transformer** | The model is a bounded *function over data* (and a swappable *library*), never the oracle, authority, or source of truth — gates, the sanity check, and the human decide. |
+| **Agent as actor (and as tool)** | Agents are isolated, message-passing, supervised actors *and* accountable parties with identity, duties & rights — and any actor can present a tool face, composing recursively. |
+| **Actions as commands** | Every action is a reified command — issued, validated, authorized (gate + capability + governance + sanity), executed, and recorded as an immutable event. |
+| **Zero trust** | Never trust, always verify: no perimeter trust, trust computed per-request from `ctx`, re-verified at every boundary, least privilege throughout. |
+| **Military-grade discipline** | Fail-safe/deny-by-default, rules of engagement, chain of command, verify-before-act, defense-in-depth, redundancy, and after-action review — uniform and non-negotiable. |
 
 ## Architecture at a glance
 
@@ -131,6 +136,9 @@ docs/        Architecture, design decisions (ADRs), and rationale
 - [`docs/IDENTIFIERS.md`](./docs/IDENTIFIERS.md) — Universal Decentralized Canonical Identifier (UDCI) for every entity
 - [`docs/DATA_SECURITY.md`](./docs/DATA_SECURITY.md) — protection, audit, encryption, three-party signing
 - [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) — kernel, runtime core, multi-platform/-language design
+- [`docs/LLM_ROLE.md`](./docs/LLM_ROLE.md) — the LLM as interpreter, translator, transformer (and as a library)
+- [`docs/AGENT_AS_ACTOR.md`](./docs/AGENT_AS_ACTOR.md) — agent as actor (and as tool); the actor model + accountable actor
+- [`docs/ACTIONS.md`](./docs/ACTIONS.md) — actions as commands; the command/event discipline
 - [`docs/CANONICAL_AGENTS.md`](./docs/CANONICAL_AGENTS.md) — the canonical real-world agent catalog
 - [`docs/ACCESS.md`](./docs/ACCESS.md) — Uniform Access Protocol: one fine-grained interface to every UDCI-named resource
 - [`docs/CLOUD_NATIVE.md`](./docs/CLOUD_NATIVE.md) — cloud-native, cloud-agnostic, K8s-native; agent-as-operator

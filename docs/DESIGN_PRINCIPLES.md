@@ -198,6 +198,27 @@ Composability is what makes modularity, feature-first delivery, and
 solution-as-a-service actually pay off: the same small, governed pieces snap
 together into arbitrarily large, still-governed wholes.
 
+## 9. Military-grade discipline
+
+UAF operates with **military-grade operational discipline** — rigor over
+improvisation. The mechanisms exist throughout the system; this principle makes
+their *discipline* non-negotiable and uniform: there is no privileged, improvised
+path.
+
+| Doctrine | In UAF |
+| --- | --- |
+| **Fail-safe / deny by default** | gates deny unless explicitly permitted; absence of authorization is denial |
+| **Rules of engagement** | [governance](./GOVERNANCE.md) (constitution, rules, rights, duties) defines what may be done, to whom, under what conditions |
+| **Chain of command** | explicit norm precedence (constitution ▸ rules ▸ plan) and traceable delegation |
+| **Verify before act** | the [mandatory sanity check](#5-sanity-check-is-mandatory) and capability gating precede every action |
+| **Defense in depth** | layered gates (ingress/admission/dispatch/egress), three-party signing, residency, least privilege — independent controls |
+| **Least privilege** | fine-grained grants; minimal authority per task |
+| **Redundancy & resilience** | isolated, supervised actors; replayable log; federated, no single point of failure |
+| **After-action review** | everything signed, logged, and measurable — a complete debrief is always possible |
+
+Discipline is the difference between *having* controls and *always applying* them.
+In UAF the controls are uniform, mandatory, and auditable — by construction.
+
 ## How they combine
 
 Because **everything is data** and that data always carries the **five
