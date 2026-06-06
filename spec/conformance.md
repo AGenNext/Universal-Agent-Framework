@@ -23,6 +23,10 @@ A conformant participant:
    the relevant schema before acting.
 5. **MUST NOT** invoke other participants directly; all coordination is via
    workspace entries.
+6. **MUST** enforce the mandatory sanity check: no `phase_transition` to
+   deliberation without an accepted reflector plan check, and no final `result`
+   without a passed reflector output check. A skipped/failed/time-boxed check
+   **MUST** be recorded as a signed entry, never silently omitted.
 
 ## Kernel (host) additional requirements
 

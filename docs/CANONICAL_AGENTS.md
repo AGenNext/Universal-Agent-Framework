@@ -27,6 +27,7 @@ from the bare protocol.
 | `uaf.tool.tts` | generate | text → audio |
 | `uaf.tool.video.synth` | generate | text(+image) → video |
 | `uaf.tool.asr` | understand | audio → text |
+| `uaf.tool.ledger` | understand/generate | record/verify → publication, versioning, signature anchoring (optional blockchain/DLT backend) |
 
 ## Composite "real-world" agents
 

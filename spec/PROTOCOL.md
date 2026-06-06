@@ -33,6 +33,11 @@ as in RFC 2119.
 5. **Transport- and language-agnostic.** Any process that can read and append
    JSON entries — in-process via the kernel C ABI, or out-of-process via
    stdio/socket/WASM — is a conformant participant.
+6. **A common communication language.** UAP is the single shared language every
+   participant speaks: one **envelope** (syntax) plus a shared **ontology** of
+   concepts (semantics). It is the lingua franca across agents, models,
+   frameworks, platforms, and federated domains — interoperability comes from
+   speaking the same language, not from sharing an implementation.
 
 ---
 
@@ -232,8 +237,16 @@ orchestrator forcing it at the limit), the orchestrator emits a
 **Deliberation.** The executor walks the plan in dependency order. For each
 step it emits `step_dispatch` then a `tool_call` (or queries an MLLM for
 `understand` steps); the tool replies with `tool_result` and registers an
-`artifact`. The reflector MAY verify a result and request a redo. When every
-step is satisfied, the executor emits `result` and the session completes.
+`artifact`. When every step is satisfied, the executor emits `result` and the
+session completes.
+
+**Mandatory sanity check.** Validation is non-optional. A session **MUST NOT**
+emit `phase_transition` to deliberation without a reflector `critique` whose
+`verdict` is `accept` (the plan sanity check), and the executor **MUST NOT** emit
+a final `result` until it has passed a reflector sanity check against the goal,
+active constraints, and measurable success criteria. A check that is time-boxed
+**MUST** be recorded as degraded; it **MUST NOT** be silently skipped, and a
+skipped or failed check is itself a logged, signed entry.
 
 ---
 

@@ -70,6 +70,12 @@ over stdio/sockets out-of-process) make each language feel native.
 | **Federated ecosystem** | Independent domains (nations, orgs, clouds, devices) interoperate peer-to-peer with no central authority — a **multi-nation, multi-device, multi-agent, multi-model** ecosystem. |
 | **Sovereign by boundary** | Cross-domain federation gates enforce residency/jurisdiction and re-sign at the border, giving verifiable cross-domain chain of custody. |
 | **World-grounded** | Reflects real-world constraints, conflicts, capabilities, knowledge, resources, theories, institutions, organizations, and the social-economic fabric as a modeled World Model — so plans are feasible, lawful, affordable, and accountable. |
+| **Constitutionally governed** | **Rule, Guardrail, Constitution, Duty & Right** are first-class deontic concepts; a per-domain constitution outranks all other norms and is enforced at the gates. |
+| **Axiomatic** | Everything is **data, defined, measurable**, and **published, version-controlled & signed** — the invariants that make the system inspectable and reproducible. |
+| **Clarity & accountability** | Clarity (legible, self-describing, rationale-recorded) and accountability (attributable, answerable, traceable) are first-class design principles. |
+| **Sanity check is mandatory** | Validation is non-skippable: the reflector sanity-checks the plan before execution and the result before return. |
+| **Common communication language** | UAP is the single shared language — one envelope plus a shared ontology — that every agent, model, framework, and domain speaks. |
+| **Blockchain as a tool** | A distributed ledger is an *optional, pluggable* tool for notarization, versioning, federation trust anchoring, and economic settlement — never a required dependency. |
 
 ## Architecture at a glance
 
@@ -111,7 +117,9 @@ docs/        Architecture, design decisions (ADRs), and rationale
 
 - [`spec/PROTOCOL.md`](./spec/PROTOCOL.md) — the Universal Agent Protocol (normative)
 - [`spec/conformance.md`](./spec/conformance.md) — conformance levels and rules
-- [`docs/DESIGN_PRINCIPLES.md`](./docs/DESIGN_PRINCIPLES.md) — everything-as-data + the five primitives
+- [`docs/DESIGN_PRINCIPLES.md`](./docs/DESIGN_PRINCIPLES.md) — everything-as-data, five primitives, clarity, accountability, mandatory sanity check
+- [`docs/AXIOMS.md`](./docs/AXIOMS.md) — defined · measurable · published/versioned/signed (+ blockchain as a tool)
+- [`docs/GOVERNANCE.md`](./docs/GOVERNANCE.md) — Rule, Guardrail, Constitution, Duty & Right as first-class concepts
 - [`docs/DATA_SECURITY.md`](./docs/DATA_SECURITY.md) — protection, audit, encryption, three-party signing
 - [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) — kernel, runtime core, multi-platform/-language design
 - [`docs/CANONICAL_AGENTS.md`](./docs/CANONICAL_AGENTS.md) — the canonical real-world agent catalog
