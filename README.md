@@ -90,6 +90,7 @@ over stdio/sockets out-of-process) make each language feel native.
 | **Zero trust** | Never trust, always verify: no perimeter trust, trust computed per-request from `ctx`, re-verified at every boundary, least privilege throughout. |
 | **JIT authentication** | No standing access: ephemeral, per-action, time-boxed credentials minted just-in-time and expiring immediately — least privilege in time as well as scope. |
 | **Time-bound everything** | Every entity, grant, fact, trust assertion, plan, norm, and identity carries temporal validity and expires; nothing is permanent by default, and expired = untrusted. |
+| **Time as an anchor** | Time is the reference frame everything is pinned to — order, causality, provenance, reproducible point-in-time snapshots, and cross-domain synchronization. Time both limits authority and locates truth. |
 | **Military-grade discipline** | Fail-safe/deny-by-default, rules of engagement, chain of command, verify-before-act, defense-in-depth, redundancy, and after-action review — uniform and non-negotiable. |
 
 ## Architecture at a glance

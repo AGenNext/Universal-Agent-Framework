@@ -47,6 +47,28 @@ expressed as a predicate over these five primitives. That is what lets *Agent at
 the Gates* and *Human at the Edge* reason uniformly: they read the same five
 dimensions on the same entries.
 
+### Time as an anchor
+
+Among the five, **Time plays a dual role**: it *bounds* (everything is
+[time-bound](./AXIOMS.md)) and it *anchors*. As the system's **anchor**, time is
+the reference frame everything else is pinned to:
+
+- **Order & causality.** The workspace's monotonic `seq` plus the kernel's signed
+  timestamp anchor a total order and the happened-before relation; every entry has
+  a definite place in time.
+- **Provenance in time.** Every entry is time-anchored and signed (optionally
+  notarized / [ledger-anchored](./AXIOMS.md)), proving *when* it existed — a
+  non-repudiable temporal chain of custody.
+- **Reproducibility.** Snapshots and replay are anchored to a point in time
+  ("as of T"), making the [stable world model](./WORLD_MODEL.md) and audits
+  deterministic.
+- **Synchronization.** Across [federated](./FEDERATION.md) domains and devices,
+  logical clocks plus attested physical time anchor cross-boundary ordering and the
+  evaluation of validity windows.
+
+So time both **limits authority** (bound) and **locates truth** (anchor): every
+fact, action, and grant is pinned to *when*.
+
 ## 3. Clarity
 
 Clarity is a first-class design constraint, not a documentation afterthought. A
