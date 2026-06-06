@@ -45,6 +45,7 @@
           "type": "object",
           "properties": {
             "actor": { "type": "string" },
+            "did": { "type": "string", "description": "Universal Decentralized Canonical Identifier (did:uaf:... or uaf://...)" },
             "credential": { "type": "string" },
             "signature": { "type": "string" }
           }

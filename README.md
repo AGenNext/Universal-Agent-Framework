@@ -76,6 +76,8 @@ over stdio/sockets out-of-process) make each language feel native.
 | **Sanity check is mandatory** | Validation is non-skippable: the reflector sanity-checks the plan before execution and the result before return. |
 | **Common communication language** | UAP is the single shared language — one envelope plus a shared ontology — that every agent, model, framework, and domain speaks. |
 | **Blockchain as a tool** | A distributed ledger is an *optional, pluggable* tool for notarization, versioning, federation trust anchoring, and economic settlement — never a required dependency. |
+| **Universal identifier for everyone** | Every entity — agent, human, tool, model, org, domain, artifact, definition, session — has one **Universal Decentralized Canonical Identifier** (DID-compatible, self-sovereign, content-addressed). |
+| **Stable World Model** | The world model is stable, versioned, internally consistent, and reproducible from point-in-time snapshots — it evolves only through governed change, never silent drift. |
 
 ## Architecture at a glance
 
@@ -120,6 +122,7 @@ docs/        Architecture, design decisions (ADRs), and rationale
 - [`docs/DESIGN_PRINCIPLES.md`](./docs/DESIGN_PRINCIPLES.md) — everything-as-data, five primitives, clarity, accountability, mandatory sanity check
 - [`docs/AXIOMS.md`](./docs/AXIOMS.md) — defined · measurable · published/versioned/signed (+ blockchain as a tool)
 - [`docs/GOVERNANCE.md`](./docs/GOVERNANCE.md) — Rule, Guardrail, Constitution, Duty & Right as first-class concepts
+- [`docs/IDENTIFIERS.md`](./docs/IDENTIFIERS.md) — Universal Decentralized Canonical Identifier (UDCI) for every entity
 - [`docs/DATA_SECURITY.md`](./docs/DATA_SECURITY.md) — protection, audit, encryption, three-party signing
 - [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) — kernel, runtime core, multi-platform/-language design
 - [`docs/CANONICAL_AGENTS.md`](./docs/CANONICAL_AGENTS.md) — the canonical real-world agent catalog

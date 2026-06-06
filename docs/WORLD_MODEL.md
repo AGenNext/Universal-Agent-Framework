@@ -90,6 +90,32 @@ Resources are scarce and **accounted**, not assumed free:
   federation domains: an org is a domain (or sub-domain) with its own trust root,
   members, capabilities, and delegation chains.
 
+## A stable World Model
+
+The World Model is only useful if agents can **rely** on it. Stability is a
+requirement, not an emergent property — the model must not drift unpredictably
+under agents' feet:
+
+- **Stable identifiers.** Every world record and ontology concept has a canonical
+  [UDCI](./IDENTIFIERS.md) — content-addressed for data, so a reference never
+  silently changes meaning. What you cited is what you get.
+- **Versioned, not mutated.** The ontology and world records evolve only through
+  **governed, versioned amendment** ([Governance](./GOVERNANCE.md),
+  [Axioms](./AXIOMS.md)); prior versions remain immutable and resolvable. Change
+  produces a new version, never an in-place rewrite — no silent drift.
+- **Internally consistent.** Contradictions are detected and reconciled as
+  [conflicts](#conflict-and-arbitration) (arbiter / human), so the model maintains
+  consistency invariants rather than accumulating quiet contradictions.
+- **Point-in-time snapshots.** Facts carry validity windows (the Time primitive),
+  so the model is **stable as of** a snapshot. Reasoning is reproducible: replay a
+  session against the same snapshot and get the same grounding.
+- **Convergent under federation.** Domains share a stable **core ontology** and
+  extend it locally; the shared core changes slowly and by agreement, so
+  cross-domain meaning stays stable even as edges innovate.
+
+Stability + the five primitives is what lets the planner trust an observation, the
+reflector reproduce a check, and a federated peer agree on what a concept *means*.
+
 ## Why this matters
 
 Grounding agents in a modeled world is what makes their output **feasible,
