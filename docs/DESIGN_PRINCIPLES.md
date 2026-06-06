@@ -110,6 +110,94 @@ because it looks plausible — it checks, every time, before acting.
 This is the reflexive backstop under everything else: clever plans, confident
 models, and autonomous operators all still have to pass the sanity check.
 
+## 6. Modular
+
+UAF is **composition over monolith**. The kernel does only four things
+([Architecture](./ARCHITECTURE.md)); *everything else is a module*: agents, tools,
+gates, bindings, world-model packs, governance/constitution sets, registries.
+
+- **Clear boundaries.** Modules interact only through UAP entries and the
+  [Uniform Access Protocol](./ACCESS.md) — never internal coupling. The protocol is
+  the seam.
+- **Independently versioned & published.** Each module has a [UDCI](./IDENTIFIERS.md)
+  and is published, versioned, and signed ([Axioms](./AXIOMS.md)) on its own.
+- **Swappable.** Any module that meets the interface and passes
+  [conformance](../spec/conformance.md) can replace another — an alternate kernel,
+  a different model, a stricter gate policy — without touching the rest.
+
+Small, sharply-bounded modules are what make the system portable, auditable, and
+evolvable.
+
+## 7. Feature First
+
+The unit of design, delivery, and reuse is the **feature** — a real-world
+capability — not a technical layer. A feature is a **self-contained vertical
+slice** that bundles everything it needs:
+
+- the agents and tools that perform it,
+- the definitions/ontology terms, world records, and norms (rules/rights) it
+  relies on,
+- its access policy and fine-grained grants,
+- its tests and canonical real-world fixtures.
+
+Consequences:
+
+- **Capability drives design.** We build "document-to-brief" or "story-to-clip"
+  ([Canonical Agents](./CANONICAL_AGENTS.md)) — whole features — not orphaned
+  layers waiting to be wired up.
+- **Independently shippable.** A feature is added or removed as a unit; the
+  canonical catalog *is* a set of feature bundles.
+- **Modular by construction.** Features are the vertical modules (§6); they compose
+  through the protocol, so two features interoperate without knowing each other's
+  internals.
+
+Feature-first keeps the framework grounded in what it actually does for the world,
+and keeps growth additive: ship a feature, don't refactor a layer.
+
+### Feature lifecycle management
+
+A feature is a managed entity with an explicit, governed lifecycle — its current
+state is itself data on the feature's [UDCI](./IDENTIFIERS.md) record, and every
+transition is versioned, signed, governed, and measurable:
+
+| Stage | What happens | Bound by |
+| --- | --- | --- |
+| **Propose** | feature defined; UDCI minted; definition drafted | [defined axiom](./AXIOMS.md) |
+| **Develop** | agents/tools/norms built; canonical fixtures + conformance tests | [conformance](../spec/conformance.md) |
+| **Publish** | signed, semantically versioned, registered for discovery | publish/version/sign axiom |
+| **Deploy / activate** | enabled in a domain, gated, constitution-bound | [Governance](./GOVERNANCE.md), [Federation](./FEDERATION.md) |
+| **Evolve** | new versions via governed amendment; stable identifiers, immutable history | [Stable World Model](./WORLD_MODEL.md) |
+| **Deprecate** | marked deprecated with a sunset window | Time primitive |
+| **Retire / revoke** | withdrawn, keys/grants revoked, optionally ledger-anchored | [Data Security](./DATA_SECURITY.md) |
+
+Lifecycle transitions are governed entries (proposals, approvals) recorded on the
+log, so *what changed, when, by whom, and under what authority* is auditable — and
+measurable (adoption, cost, conformance, incidents) at every stage. Nothing enters
+or leaves service silently.
+
+## 8. Composable
+
+Composition is the primary way to build in UAF. Units at **every** level —
+primitives, modules (§6), features/products, solutions — compose through the *same
+seam*: UAP entries plus [Uniform Access](./ACCESS.md) over [UDCIs](./IDENTIFIERS.md),
+with no bespoke glue.
+
+- **Uniform & recursive.** A composition is itself a unit — a solution is a
+  product is a composable thing ([Axioms](./AXIOMS.md)) — so composition nests
+  arbitrarily without special cases.
+- **Loosely coupled.** Parts interoperate by speaking the protocol, never by
+  sharing internals; any conformant part substitutes for another.
+- **Invariant-preserving.** Composing preserves the guarantees: a composite is
+  defined, measurable, published, managed, governed, signed, and accountable
+  *because its parts are* — plus the composite's own contract. Nothing leaks out of
+  composition.
+- **Emergent capability.** Complex real-world solutions emerge from composing
+  simple, conformant, canonical parts — reuse over rebuild.
+
+Composability is what makes modularity, feature-first delivery, and
+solution-as-a-service actually pay off: the same small, governed pieces snap
+together into arbitrarily large, still-governed wholes.
+
 ## How they combine
 
 Because **everything is data** and that data always carries the **five

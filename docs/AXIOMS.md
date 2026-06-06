@@ -84,7 +84,87 @@ a plain content-addressed store interchangeably — preserving cloud-agnosticism
 avoiding lock-in. The axiom is *published/versioned/signed*; the ledger is one way
 to satisfy it.
 
-## Why these four
+## 5. Everything is **managed**
+
+Every entity is a **managed entity** with an explicit, governed lifecycle — it is
+created, published, versioned, deployed, deprecated, and retired; never appearing
+or disappearing silently. The lifecycle **state is data** on the entity's record,
+every transition is **signed and governed**, and each stage is **measurable**.
+
+This generalizes the per-kind lifecycles already defined:
+
+| Managed entity | Lifecycle |
+| --- | --- |
+| Features | [Feature lifecycle management](./DESIGN_PRINCIPLES.md) |
+| Identities | [Identity lifecycle management](./IDENTIFIERS.md) |
+| Definitions, norms, tools, models, agents, world records | same pattern: propose → publish → evolve → deprecate → retire |
+
+Because management is itself data, you can always answer *what state is this in,
+how did it get here, who authorized each step, and what did it cost* — for
+anything in the system. "Managed" is what turns *defined, measurable, published*
+into a controlled lifecycle rather than a static snapshot.
+
+## 6. Everything is **governed**
+
+No entity, action, transition, or access sits outside the normative layer. Every
+entry passes a [gate](./AGENT_AT_THE_GATES.md); every action is bound by the
+applicable [constitution and rules](./GOVERNANCE.md); every actor holds duties and
+rights; every decision is accountable and sanity-checked. **There is no
+privileged, ungoverned path** — the kernel, gates, and constitution apply to all
+participants equally, including operators and humans (within their rights).
+
+Governance is universal and non-optional. Combined with *everything is managed*,
+it means every lifecycle transition is not just recorded but **authorized**: a
+feature ships, a key rotates, a norm amends, a tool is invoked — each only under
+the authority that governs it.
+
+## 7. Everything is **a product**
+
+Every entity is treated as a **product**, not an artifact that merely exists. A
+product in UAF has:
+
+- an **owner** accountable for it ([accountability](./DESIGN_PRINCIPLES.md));
+- named **consumers** and a documented **interface contract** (its definition);
+- **quality / SLOs** that are measured and enforced;
+- a **roadmap and lifecycle** (managed), and a clear **value proposition**.
+
+Product thinking turns the other axioms into a discipline:
+
+| Product practice | Rests on |
+| --- | --- |
+| Discoverable in a catalog | published / versioned / signed |
+| Self-service consumable | [Uniform Access Protocol](./ACCESS.md) |
+| Compatibility promises across versions | defined + managed |
+| Consumer-driven quality (SLOs) | measurable |
+| Clear ownership & support | governed |
+
+The [canonical catalog](./CANONICAL_AGENTS.md) is therefore a **product catalog**;
+features, agents, tools, models, definitions, datasets, identities — and the
+protocol itself — are each products with owners and consumers. This favors
+**reuse over rebuild** and makes value, not just function, explicit.
+
+### Solution as a Service
+
+Products **compose into solutions**, and solutions are delivered **as a service**.
+This is the composition ladder:
+
+```
+   primitives & modules  →  features (= products)  →  solutions  →  delivered as a service
+```
+
+- A **solution** composes multiple products/features into an end-to-end answer to
+  a real-world problem (e.g. an entire claims-processing or research workflow), not
+  a single capability.
+- Delivered **as a service** means: **self-service** to consume
+  ([Uniform Access](./ACCESS.md)), **metered** and billable (the
+  [resource/economic](./WORLD_MODEL.md) accounting), **multi-tenant** across
+  [federated domains](./FEDERATION.md), **SLO-backed** (measurable), **governed**
+  (owned, rule-bound), and **lifecycle-managed** (versioned, supported, retired).
+- Because solutions are themselves products (with owners, contracts, SLOs, and a
+  UDCI), the whole stack is uniform: a service is a governed, managed product that
+  happens to compose others. Reuse and recursion all the way up.
+
+## Why these axioms
 
 | Axiom | Guarantees |
 | --- | --- |
@@ -92,10 +172,12 @@ to satisfy it.
 | Data | inspectability, replayability, one substrate |
 | Measurable | observability, evidence-based decisions, enforceable SLOs |
 | Published / versioned / signed | discoverability, reproducibility, provenance, accountability |
+| Managed | controlled lifecycle; nothing appears or disappears silently |
+| Governed | universal authority; no privileged ungoverned path |
 
 Together they mean: **anything in UAF can be found, understood, validated,
-measured, reproduced, and attributed** — which is the precondition for trusting an
-autonomous, federated, world-acting system.
+measured, reproduced, attributed, lifecycle-managed, and governed** — which is the
+precondition for trusting an autonomous, federated, world-acting system.
 
 > Status: design direction. The axioms are invariants the registry, schemas,
 > metrics, and signing model enforce; they constrain *how* every other layer is

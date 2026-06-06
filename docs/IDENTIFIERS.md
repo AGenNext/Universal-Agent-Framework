@@ -65,15 +65,29 @@ a federation peer; content identifiers resolve from any store that has the bytes
 ([blockchain as a tool](./AXIOMS.md)) **MAY** anchor resolution, rotation, and
 revocation — optional, never required.
 
-## Lifecycle
+## Identity lifecycle management
 
-- **Mint** — self-issued (key or content); no gatekeeper.
-- **Rotate** — actors rotate keys via their document; the canonical identifier can
-  persist across rotation (key-agility) while old keys are retired.
-- **Revoke** — revocation is published (and optionally ledger-anchored); a gate
-  rejects entries signed by revoked keys.
-- **Version** — data identifiers are immutable; a new version is a new identifier,
-  with semantic-version metadata linking the lineage.
+An identity is a **managed entity** with an explicit, governed lifecycle. Its
+current state lives in its resolvable document, and every transition is signed,
+recorded as data, and (optionally) ledger-anchored — so the full history of an
+identity is auditable:
+
+| Stage | What happens | Bound by |
+| --- | --- | --- |
+| **Mint / issue** | self-issued (key-derived) or content-derived; no gatekeeper | self-sovereign |
+| **Bind / attest** | keys, capabilities, and (for org actors) domain membership attached; peers may attest | Trust primitive |
+| **Activate** | admitted to a domain; capabilities advertised via `hello` | [Governance](./GOVERNANCE.md) |
+| **Rotate** | key rotation via the document; the canonical identifier persists (key-agility) while old keys retire | [Data Security](./DATA_SECURITY.md) |
+| **Delegate** | authority granted to another identity, scoped and time-boxed | Relation + Time |
+| **Suspend** | temporarily disabled (sunset window); entries held/blocked at the gate | Time primitive |
+| **Revoke** | permanently invalidated; revocation published/anchored; gates reject signatures from revoked keys | [Federation](./FEDERATION.md) |
+| **Retire** | withdrawn from service; history preserved immutably | publish/version/sign [axiom](./AXIOMS.md) |
+
+Data identifiers have a parallel, simpler lifecycle: they are **immutable**, so a
+change is a new version (new identifier) with semantic-version metadata linking the
+lineage — minting and superseding, never mutation. Lifecycle transitions are
+governed entries, so *what changed, when, by whom, under what authority* is on the
+log and **measurable** at every stage.
 
 ## How it underpins the rest of UAF
 

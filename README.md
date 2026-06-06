@@ -53,6 +53,7 @@ over stdio/sockets out-of-process) make each language feel native.
 
 | Principle | What it buys |
 | --- | --- |
+| **Foundational** | A minimal substrate others build on — a small protocol + kernel + primitives that everything else (agents, tools, solutions) layers onto. |
 | **Protocol first** | Implementations, languages, and platforms stay interchangeable; the spec is the source of truth, not any one codebase. |
 | **Kernel native** | One small compiled core to port and audit; deterministic scheduling; no per-language reimplementation of orchestration. |
 | **Runtime core** | The kernel is a *library you embed*, not a service you must deploy — agents are hosted, not glued together. |
@@ -71,13 +72,18 @@ over stdio/sockets out-of-process) make each language feel native.
 | **Sovereign by boundary** | Cross-domain federation gates enforce residency/jurisdiction and re-sign at the border, giving verifiable cross-domain chain of custody. |
 | **World-grounded** | Reflects real-world constraints, conflicts, capabilities, knowledge, resources, theories, institutions, organizations, and the social-economic fabric as a modeled World Model — so plans are feasible, lawful, affordable, and accountable. |
 | **Constitutionally governed** | **Rule, Guardrail, Constitution, Duty & Right** are first-class deontic concepts; a per-domain constitution outranks all other norms and is enforced at the gates. |
-| **Axiomatic** | Everything is **data, defined, measurable**, and **published, version-controlled & signed** — the invariants that make the system inspectable and reproducible. |
+| **Axiomatic** | Everything is **data · defined · measurable · published/versioned/signed · managed · governed · a product** — the invariants that make the system inspectable, reproducible, controlled, and accountable. |
+| **Composable** | Primitives, modules, features/products, and solutions compose through one seam (UAP + uniform access over UDCIs); composition nests recursively and preserves every guarantee. |
+| **Product & service oriented** | Every entity is a product (owner, contract, SLOs, lifecycle); products compose into **solutions delivered as a service** (self-service, metered, multi-tenant, SLO-backed). |
 | **Clarity & accountability** | Clarity (legible, self-describing, rationale-recorded) and accountability (attributable, answerable, traceable) are first-class design principles. |
 | **Sanity check is mandatory** | Validation is non-skippable: the reflector sanity-checks the plan before execution and the result before return. |
 | **Common communication language** | UAP is the single shared language — one envelope plus a shared ontology — that every agent, model, framework, and domain speaks. |
 | **Blockchain as a tool** | A distributed ledger is an *optional, pluggable* tool for notarization, versioning, federation trust anchoring, and economic settlement — never a required dependency. |
 | **Universal identifier for everyone** | Every entity — agent, human, tool, model, org, domain, artifact, definition, session — has one **Universal Decentralized Canonical Identifier** (DID-compatible, self-sovereign, content-addressed). |
 | **Stable World Model** | The world model is stable, versioned, internally consistent, and reproducible from point-in-time snapshots — it evolves only through governed change, never silent drift. |
+| **Uniform, fine-grained access** | One interface (resolve/read/write/query/subscribe/invoke) to every UDCI-named resource, with access resolving down to the field/verb/capability under least privilege. |
+| **Modular** | Composition over monolith: everything outside the minimal kernel is an independently versioned, published, signed, swappable module. |
+| **Feature first** | The unit of design and delivery is the feature — a self-contained vertical slice (agents, tools, definitions, norms, access policy, tests) — not a technical layer. |
 
 ## Architecture at a glance
 
@@ -126,6 +132,7 @@ docs/        Architecture, design decisions (ADRs), and rationale
 - [`docs/DATA_SECURITY.md`](./docs/DATA_SECURITY.md) — protection, audit, encryption, three-party signing
 - [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) — kernel, runtime core, multi-platform/-language design
 - [`docs/CANONICAL_AGENTS.md`](./docs/CANONICAL_AGENTS.md) — the canonical real-world agent catalog
+- [`docs/ACCESS.md`](./docs/ACCESS.md) — Uniform Access Protocol: one fine-grained interface to every UDCI-named resource
 - [`docs/CLOUD_NATIVE.md`](./docs/CLOUD_NATIVE.md) — cloud-native, cloud-agnostic, K8s-native; agent-as-operator
 - [`docs/FEDERATION.md`](./docs/FEDERATION.md) — federated, multi-nation/-device/-agent/-model ecosystem
 - [`docs/WORLD_MODEL.md`](./docs/WORLD_MODEL.md) — reflecting real-world constraints, conflicts, knowledge, institutions, economics
