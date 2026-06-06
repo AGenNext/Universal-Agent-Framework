@@ -8,7 +8,7 @@ world as a first-class, *modeled* substrate rather than implicit context.
 This is *everything-as-data* taken to its conclusion: **the world itself is
 data** — a shared, typed, versioned **World Model** that perceivers ground into,
 planners reason over, gates enforce against, and reflectors check feasibility
-with. Every world record carries the five [primitives](./DESIGN_PRINCIPLES.md)
+with. Every world record carries the core [primitives](./DESIGN_PRINCIPLES.md)
 (Trust, Time, Location, Identity, Relation), so knowledge can be sourced,
 expired, located, attributed, and related — just like any other entry.
 
@@ -32,7 +32,7 @@ expired, located, attributed, and related — just like any other entry.
 ## Constraints as enforceable policy
 
 Real-world limits are not advice — they are **enforced**. A constraint is a
-predicate over the five primitives and the World Model. It lives as data and is
+predicate over the core primitives and the World Model. It lives as data and is
 applied at two points:
 
 - **Gates** ([Agent at the Gates](./AGENT_AT_THE_GATES.md)) block an entry or
@@ -140,7 +140,7 @@ under agents' feet:
   extend it locally; the shared core changes slowly and by agreement, so
   cross-domain meaning stays stable even as edges innovate.
 
-Stability + the five primitives is what lets the planner trust an observation, the
+Stability + the core primitives is what lets the planner trust an observation, the
 reflector reproduce a check, and a federated peer agree on what a concept *means*.
 
 ## Why this matters
@@ -152,5 +152,5 @@ arbiter resolves conflict, resources are paid for, and every assumption —
 knowledge, theory, institution — is inspectable data with provenance.
 
 > Status: design direction. The World Model is content expressed as data and
-> policy over the existing five primitives; it adds no envelope fields. New roles
+> policy over the existing core primitives; it adds no envelope fields. New roles
 > (`x-arbiter`) and typed world records extend the system additively.

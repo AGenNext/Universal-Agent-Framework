@@ -107,7 +107,7 @@ another**. UAF encodes both as data and ties them together:
 | Rights of the human | [Human at the Edge](./HUMAN_AT_THE_EDGE.md) — consent/review as enforced rights |
 | Rules as constraints | [World Model](./WORLD_MODEL.md) — rules add deontic modality to constraints |
 | Sovereign constitution | [Federation](./FEDERATION.md) — a constitution is bound per domain |
-| Everything as norms-as-data | [Design Principles](./DESIGN_PRINCIPLES.md) — norms are entries over the five primitives |
+| Everything as norms-as-data | [Design Principles](./DESIGN_PRINCIPLES.md) — norms are entries over the core primitives |
 
 > Status: design direction. Constitution, rules, duties, and rights are typed
 > records (content + policy), and guardrails are gate enforcement; this adds the

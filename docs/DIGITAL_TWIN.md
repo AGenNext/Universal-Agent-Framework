@@ -79,9 +79,9 @@ relied on.
 | actuation to reality | [agent-as-operator / Cloud-Native](./CLOUD_NATIVE.md) |
 | simulation as a sanity gate | [mandatory sanity check](./DESIGN_PRINCIPLES.md) |
 | sync, snapshots, reproducibility | [time as anchor](./DESIGN_PRINCIPLES.md) |
-| fidelity / freshness / provenance / locus / graph | the five primitives |
+| fidelity / freshness / provenance / locus / graph | the core primitives |
 | consent for person twins | [Human at the Edge](./HUMAN_AT_THE_EDGE.md) |
 
 > Status: design direction. Digital twins are live World-Model entities expressed
-> as data over the five primitives, actuated by commands and rehearsed in
+> as data over the core primitives, actuated by commands and rehearsed in
 > simulation — no wire-format change.

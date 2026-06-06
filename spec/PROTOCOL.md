@@ -288,7 +288,8 @@ review.
   "time":     { "valid_from": "2026-06-06T18:20:00Z", "valid_until": "2026-06-06T18:25:00Z", "logical": 12 },
   "location": { "zone": "edge", "region": "eu-west", "device": "kiosk-7", "residency": "EU" },
   "trust":    { "level": "attested", "score": 0.92, "basis": ["signature", "gate:admission"] },
-  "relation": { "delegated_by": "client-0", "depends_on": ["s1"], "org": "acme" }
+  "relation": { "delegated_by": "client-0", "depends_on": ["s1"], "org": "acme" },
+  "capability": { "grants": ["READ:uaf://...", "INVOKE:did:uaf:acme:tts"], "token": "cap:...", "expires": "2026-06-06T18:25:00Z" }
 }
 ```
 
@@ -299,6 +300,7 @@ review.
 | **Location** | *Where* did it originate / may it go? | edge-vs-cloud routing, data residency, locality of artifacts |
 | **Trust** | *How much* do we believe it? | gating thresholds, escalation to a human, capability eligibility |
 | **Relation** | *How* does it relate to other entries/actors? | causality, delegation chains, org/social structure |
+| **Capability** | *What* may it do? | declared/granted/scoped/verified authority; capability-gated dispatch and fine-grained, JIT authorization |
 
 Rules:
 
@@ -310,7 +312,7 @@ Rules:
 - A gate MAY raise or lower `ctx.trust` and MUST record the basis; downstream
   participants read the updated value.
 
-These five primitives are the vocabulary the security model below is expressed
+These core primitives are the vocabulary the security model below is expressed
 in. See [`../docs/DESIGN_PRINCIPLES.md`](../docs/DESIGN_PRINCIPLES.md).
 
 ## 11. Security considerations

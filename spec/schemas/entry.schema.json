@@ -83,6 +83,15 @@
             "org": { "type": "string" }
           }
         },
+        "capability": {
+          "type": "object",
+          "description": "What the actor may do — declared/granted/scoped/verified authority.",
+          "properties": {
+            "grants": { "type": "array", "items": { "type": "string" }, "description": "Scoped grants, e.g. VERB:udci[#field]." },
+            "token": { "type": "string", "description": "JIT capability token." },
+            "expires": { "type": "string", "format": "date-time" }
+          }
+        },
         "signatures": {
           "type": "array",
           "description": "Three-party attestation: author, gate, kernel.",

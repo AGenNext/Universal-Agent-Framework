@@ -29,7 +29,7 @@ Consequences:
 If something influences behavior, it MUST be expressible as an entry. Hidden
 state is a protocol violation, not an optimization.
 
-## 2. Five primitives: Trust, Time, Location, Identity, Relation
+## 2. Core primitives: Trust, Time, Location, Identity, Relation, Capability
 
 These are not metadata bolted onto messages; they are **first-class primitives**
 carried in every entry's [`ctx` block](../spec/PROTOCOL.md#10-core-primitives--the-context-block):
@@ -41,15 +41,16 @@ carried in every entry's [`ctx` block](../spec/PROTOCOL.md#10-core-primitives--t
 | **Location** | *Where* is it from / allowed? | edge↔cloud routing, data residency |
 | **Trust** | *How much* do we believe it? | gate thresholds, human escalation |
 | **Relation** | *How* does it relate? | causality, delegation chains, org structure |
+| **Capability** | *What* may it do? | what an actor can do — declared, granted, scoped, verified; the basis of capability-gated dispatch and fine-grained authorization |
 
-Every policy in UAF — gating, routing, human escalation, residency — is
-expressed as a predicate over these five primitives. That is what lets *Agent at
-the Gates* and *Human at the Edge* reason uniformly: they read the same five
+Every policy in UAF — gating, routing, human escalation, residency, authorization
+— is expressed as a predicate over these core primitives. That is what lets *Agent
+at the Gates* and *Human at the Edge* reason uniformly: they read the same
 dimensions on the same entries.
 
 ### Time as an anchor
 
-Among the five, **Time plays a dual role**: it *bounds* (everything is
+Among the six, **Time plays a dual role**: it *bounds* (everything is
 [time-bound](./AXIOMS.md)) and it *anchors*. As the system's **anchor**, time is
 the reference frame everything else is pinned to:
 

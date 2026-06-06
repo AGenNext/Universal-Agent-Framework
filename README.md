@@ -66,7 +66,7 @@ over stdio/sockets out-of-process) make each language feel native.
 | **Human at the Edge** | The human is a first-class participant at the decision boundary (and the network edge), gating high-stakes steps. |
 | **Agent at the Gates** | An agent stands as a policy-enforcement point at every boundary; agents gate at scale, humans gate the residual. |
 | **Everything as data** | No out-of-band control channels — tasks, plans, policies, trust, even control flow are entries on one replayable, auditable log. |
-| **Five primitives** | **Trust, Time, Location, Identity, Relation** are first-class on every entry (the `ctx` block); all policy is a predicate over them. |
+| **Core primitives** | **Trust, Time, Location, Identity, Relation, Capability** are first-class on every entry (the `ctx` block); all policy is a predicate over them. |
 | **Secure by data model** | Every entry is protected, auditable, encrypted at rest and in transit, and **three-party signed** (author + gate + kernel) at each exchange. |
 | **Federated ecosystem** | Independent domains (nations, orgs, clouds, devices) interoperate peer-to-peer with no central authority — a **multi-nation, multi-device, multi-agent, multi-model** ecosystem. |
 | **Sovereign by boundary** | Cross-domain federation gates enforce residency/jurisdiction and re-sign at the border, giving verifiable cross-domain chain of custody. |
@@ -95,6 +95,7 @@ over stdio/sockets out-of-process) make each language feel native.
 | **Time-bound everything** | Every entity, grant, fact, trust assertion, plan, norm, and identity carries temporal validity and expires; nothing is permanent by default, and expired = untrusted. |
 | **Time as an anchor** | Time is the reference frame everything is pinned to — order, causality, provenance, reproducible point-in-time snapshots, and cross-domain synchronization. Time both limits authority and locates truth. |
 | **Past is real, present is the edge** | The signed event log is immutable, trusted history; change happens only at the gated present (the edge); the future is provisional plan and simulation. The system writes forward only. |
+| **Replay · reversal · impersonation · time travel** | All four are supported — but only in the data/simulation plane; they read, simulate, and append, never altering reality, which changes only via a fresh gated command at the present. |
 | **Durable executions** | A session is a durable workflow: execution state is the persisted, signed, replayable log, so it survives crashes, restarts, and long async waits and resumes exactly where it left off. |
 | **No single point of failure** | Resilience by redundancy: no central authority, a replicated/leader-elected kernel over a replicated journal, stateless supervised actors — components fail, the system does not. |
 | **Multi-channel connectivity** | Every node is reachable over multiple transports and redundant peer-to-peer paths with channel-independent UDCI addressing and store-and-forward when disconnected. |
@@ -141,7 +142,7 @@ docs/        Architecture, design decisions (ADRs), and rationale
 
 - [`spec/PROTOCOL.md`](./spec/PROTOCOL.md) — the Universal Agent Protocol (normative)
 - [`spec/conformance.md`](./spec/conformance.md) — conformance levels and rules
-- [`docs/DESIGN_PRINCIPLES.md`](./docs/DESIGN_PRINCIPLES.md) — everything-as-data, five primitives, clarity, accountability, mandatory sanity check
+- [`docs/DESIGN_PRINCIPLES.md`](./docs/DESIGN_PRINCIPLES.md) — everything-as-data, core primitives, clarity, accountability, mandatory sanity check
 - [`docs/AXIOMS.md`](./docs/AXIOMS.md) — defined · measurable · published/versioned/signed (+ blockchain as a tool)
 - [`docs/GOVERNANCE.md`](./docs/GOVERNANCE.md) — Rule, Guardrail, Constitution, Duty & Right as first-class concepts
 - [`docs/IDENTIFIERS.md`](./docs/IDENTIFIERS.md) — Universal Decentralized Canonical Identifier (UDCI) for every entity
@@ -151,6 +152,7 @@ docs/        Architecture, design decisions (ADRs), and rationale
 - [`docs/AGENT_AS_ACTOR.md`](./docs/AGENT_AS_ACTOR.md) — agent as actor (and as tool); the actor model + accountable actor
 - [`docs/ACTIONS.md`](./docs/ACTIONS.md) — actions as commands; the command/event discipline
 - [`docs/DURABLE_EXECUTION.md`](./docs/DURABLE_EXECUTION.md) — durable, crash-tolerant, resumable executions via the replayable log
+- [`docs/TEMPORAL_CAPABILITIES.md`](./docs/TEMPORAL_CAPABILITIES.md) — replay, reversal, impersonation, time travel — bounded by "must not alter reality"
 - [`docs/CANONICAL_AGENTS.md`](./docs/CANONICAL_AGENTS.md) — the canonical real-world agent catalog
 - [`docs/ACCESS.md`](./docs/ACCESS.md) — Uniform Access Protocol: one fine-grained interface to every UDCI-named resource
 - [`docs/CLOUD_NATIVE.md`](./docs/CLOUD_NATIVE.md) — cloud-native, cloud-agnostic, K8s-native; agent-as-operator

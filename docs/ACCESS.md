@@ -39,7 +39,7 @@ One address space (UDCI), one interface — below.
 | **RESOLVE** | identifier → document (keys, endpoints, capabilities, metadata) | identity/capability resolution |
 | **READ** | fetch content at a (pinned) version | artifact fetch |
 | **WRITE** | store content → mints a new content-addressed version | `artifact` registration |
-| **QUERY / LIST** | select over the world model / registry by predicate on the five primitives | a query entry |
+| **QUERY / LIST** | select over the world model / registry by predicate on the core primitives | a query entry |
 | **SUBSCRIBE** | stream entries/changes matching a selector | workspace subscription |
 | **INVOKE** | call a capability of a tool/agent resource | `tool_call` → `tool_result` |
 
@@ -55,7 +55,7 @@ Whatever the resource, access obeys identical rules:
 - **Capability-gated** — every access passes a [gate](./AGENT_AT_THE_GATES.md);
   one enforcement model, not per-API auth.
 - **Primitive-aware** — every access carries `ctx` (Trust, Time, Location,
-  Identity, Relation); policy is the same predicate language everywhere.
+  Identity, Relation, Capability); policy is the same predicate language everywhere.
 - **Signed & audited** — three-party signing
   ([Data Security](./DATA_SECURITY.md)) on access as on everything else.
 - **Versioned** — READ pins a version (content-addressed); WRITE mints one; no
@@ -75,7 +75,7 @@ granularity**, and policy is least-privilege at that granularity:
   one — a field, a fragment, a sub-record (`uaf://bafk...#/steps/2/instruction`).
   You name exactly what you mean.
 - **Fine-grained authorization.** Capability grants scope to a **specific verb on a
-  specific resource (or field)**, optionally conditioned on the five primitives
+  specific resource (or field)**, optionally conditioned on the core primitives
   (e.g. *READ this field, from the EU zone, if trust ≥ attested, until T*). Access
   is granted per-operation, not per-API.
 - **Fine-grained metering.** Resource accounting
@@ -96,7 +96,7 @@ everything, with precise control over exactly what each actor may touch.
    name        ──▶  Universal Decentralized Canonical Identifier (UDCI)
    access      ──▶  Uniform Access Protocol   (resolve/read/write/query/subscribe/invoke)
    coordinate  ──▶  Universal Agent Protocol (UAP)   (entries · phases · workspace)
-   enforce     ──▶  Gates + five primitives + three-party signing
+   enforce     ──▶  Gates + core primitives + three-party signing
 ```
 
 Naming, access, coordination, and enforcement are one coherent stack: you *name*

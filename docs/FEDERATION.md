@@ -4,7 +4,7 @@ UAF is designed to scale past a single deployment into a **federated ecosystem**
 many independent UAF **domains** — nations, organizations, clouds, devices — that
 interoperate through the [protocol](../spec/PROTOCOL.md) without any central
 authority. Federation is not a new protocol; it is the existing protocol plus
-**boundary gates** that enforce sovereignty using the five primitives.
+**boundary gates** that enforce sovereignty using the core primitives.
 
 ## What federates
 
@@ -44,7 +44,7 @@ A federation gate, for each cross-domain entry, MUST:
    importing domain has local non-repudiation. The origin's 3-of-3 plus the
    boundary signature gives a verifiable cross-domain chain of custody.
 
-## Sovereignty via the five primitives
+## Sovereignty via the core primitives
 
 Federation needs no new vocabulary — it is policy over the existing
 [primitives](./DESIGN_PRINCIPLES.md):

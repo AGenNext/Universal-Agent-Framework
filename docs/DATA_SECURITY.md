@@ -5,7 +5,7 @@ Every entry on the workspace MUST be **protected, auditable, and secured**:
 encrypted at rest, encrypted in transit, and **three-party signed at each
 exchange**. These are normative requirements layered on the
 [protocol security model](../spec/PROTOCOL.md#11-security-considerations) and
-expressed in terms of the five primitives.
+expressed in terms of the core primitives.
 
 ## Requirements
 
@@ -37,7 +37,7 @@ UAF assumes **no implicit trust** — *never trust, always verify*:
 - **Least privilege & microsegmentation.** Fine-grained grants and layered gates
   isolate every actor; a breach of one is not a breach of the system.
 
-Zero trust is the **posture**; the gates, five primitives, and three-party signing
+Zero trust is the **posture**; the gates, core primitives, and three-party signing
 below are its **implementation**.
 
 ## Just-in-time (JIT) authentication
