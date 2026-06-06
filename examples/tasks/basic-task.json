@@ -1,0 +1,15 @@
+{
+  "goal": "Create a safe, evidence-backed MVP loop for turning builder expression into a replayable result.",
+  "context": {
+    "environment": "edge",
+    "design_principles": [
+      "edge-native",
+      "runtime-core",
+      "kernel-native"
+    ],
+    "desired_outputs": [
+      "workspace_jsonl",
+      "session_summary_report"
+    ]
+  }
+}
