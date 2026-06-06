@@ -40,6 +40,29 @@ UAF assumes **no implicit trust** — *never trust, always verify*:
 Zero trust is the **posture**; the gates, five primitives, and three-party signing
 below are its **implementation**.
 
+## Just-in-time (JIT) authentication
+
+Zero trust implies **no standing access**. Authentication and authorization are
+granted **just in time** — at the moment of use, for the specific action, and they
+expire immediately after:
+
+- **Ephemeral credentials.** The gate mints a short-lived capability token bound to
+  the actor's [UDCI](./IDENTIFIERS.md) and the request `ctx`; it is verified by
+  three-party signing and dies on a tight `ctx.time` window. There are no
+  long-lived secrets to steal or leak.
+- **Per-action authorization.** Every [command](./ACTIONS.md) re-authenticates and
+  re-authorizes at execution; prior approval never carries forward (continuous
+  verification).
+- **Scoped & time-boxed.** Grants are [fine-grained](./ACCESS.md)
+  (verb/resource/field) and bounded by the Time primitive; delegation is itself JIT
+  and expiring ([identity lifecycle](./IDENTIFIERS.md)).
+- **Smaller blast radius.** Because credentials are ephemeral and minted on demand,
+  revocation is largely implicit via expiry, and a compromised token is useless
+  later.
+
+JIT authentication is how *least privilege* becomes *least privilege in time* as
+well as in scope.
+
 ## Three-party signing at each exchange
 
 An entry becomes part of the immutable log only when it carries a **3-of-3
