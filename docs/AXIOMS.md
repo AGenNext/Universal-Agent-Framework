@@ -164,6 +164,37 @@ This is the composition ladder:
   UDCI), the whole stack is uniform: a service is a governed, managed product that
   happens to compose others. Reuse and recursion all the way up.
 
+## 8. Everything is **time-bound**
+
+Nothing is permanent by default. Every entity, grant, and assertion carries
+**temporal validity** (`valid_from` / `valid_until`) via the Time primitive and
+**expires**:
+
+| Time-bound thing | Expires / is bounded by |
+| --- | --- |
+| Credentials & authorizations | [JIT auth](./DATA_SECURITY.md) — minted on demand, tight TTL |
+| Trust assertions | `ctx.trust` with a validity window; stale trust is re-earned |
+| Knowledge & facts | beliefs carry validity; stale facts are no longer relied upon |
+| Plans & sessions | deadlines and time budgets |
+| Delegations | JIT and expiring ([identity lifecycle](./IDENTIFIERS.md)) |
+| Norms | effective dates and sunset windows ([governance](./GOVERNANCE.md)) |
+| Features & identities | lifecycle stages with deprecation/retirement |
+
+Consequences:
+
+- **Bounded by default.** Absent an explicit window, a conservative default TTL
+  applies; *“forever” must be stated explicitly and is itself governed.*
+- **Expired = untrusted.** A [gate](./AGENT_AT_THE_GATES.md) rejects any entry,
+  grant, or fact outside its validity window — time-based revocation is implicit.
+- **Reproducible.** Point-in-time validity is what makes
+  [stable-world-model](./WORLD_MODEL.md) snapshots and replay deterministic.
+- **Least privilege in time.** Authority that is never permanent cannot
+  silently accumulate.
+
+Time-bounding is the temporal dimension of *everything managed and governed*:
+things do not just exist and persist — they are valid *for a stated time*, then
+must be renewed, re-verified, or retired.
+
 ## Why these axioms
 
 | Axiom | Guarantees |
@@ -174,6 +205,7 @@ This is the composition ladder:
 | Published / versioned / signed | discoverability, reproducibility, provenance, accountability |
 | Managed | controlled lifecycle; nothing appears or disappears silently |
 | Governed | universal authority; no privileged ungoverned path |
+| Time-bound | temporal validity by default; expired = untrusted; no permanent authority |
 
 Together they mean: **anything in UAF can be found, understood, validated,
 measured, reproduced, attributed, lifecycle-managed, and governed** — which is the
