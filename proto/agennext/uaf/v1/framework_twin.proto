@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package agennext.uaf.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/AGenNext/Universal-Agent-Framework/gen/go/agennext/uaf/v1;uafv1";
+
+enum FrameworkModuleRole {
+  FRAMEWORK_MODULE_ROLE_UNSPECIFIED = 0;
+  FRAMEWORK_MODULE_ROLE_FOUNDATION = 1;
+  FRAMEWORK_MODULE_ROLE_LANGUAGE = 2;
+  FRAMEWORK_MODULE_ROLE_BLUEPRINT = 3;
+  FRAMEWORK_MODULE_ROLE_IDENTITY = 4;
+  FRAMEWORK_MODULE_ROLE_STATE = 5;
+  FRAMEWORK_MODULE_ROLE_HANDOFF = 6;
+  FRAMEWORK_MODULE_ROLE_CHECKS = 7;
+  FRAMEWORK_MODULE_ROLE_GUARD = 8;
+  FRAMEWORK_MODULE_ROLE_RECONCILIATION = 9;
+  FRAMEWORK_MODULE_ROLE_PLATFORM = 10;
+  FRAMEWORK_MODULE_ROLE_ORB = 11;
+  FRAMEWORK_MODULE_ROLE_HANDS = 12;
+  FRAMEWORK_MODULE_ROLE_AUTONOMOUS_AGENT = 13;
+  FRAMEWORK_MODULE_ROLE_SDK = 14;
+  FRAMEWORK_MODULE_ROLE_FEDERATION = 15;
+  FRAMEWORK_MODULE_ROLE_AGREEMENTS = 16;
+  FRAMEWORK_MODULE_ROLE_ECONOMY = 17;
+  FRAMEWORK_MODULE_ROLE_DRIVE = 18;
+  FRAMEWORK_MODULE_ROLE_SPACE = 19;
+  FRAMEWORK_MODULE_ROLE_SKILLS = 20;
+}
+
+enum TwinStatus {
+  TWIN_STATUS_UNSPECIFIED = 0;
+  TWIN_STATUS_DECLARED = 1;
+  TWIN_STATUS_OBSERVED = 2;
+  TWIN_STATUS_ALIGNED = 3;
+  TWIN_STATUS_DRIFTED = 4;
+  TWIN_STATUS_FROZEN = 5;
+  TWIN_STATUS_RECONCILED = 6;
+  TWIN_STATUS_ARCHIVED = 7;
+}
+
+enum ConformanceStatus {
+  CONFORMANCE_STATUS_UNSPECIFIED = 0;
+  CONFORMANCE_STATUS_NOT_CHECKED = 1;
+  CONFORMANCE_STATUS_PASS = 2;
+  CONFORMANCE_STATUS_FAIL = 3;
+  CONFORMANCE_STATUS_EXEMPT = 4;
+}
+
+message FrameworkModuleTwin {
+  string id = 1;
+  string name = 2;
+  string repository = 3;
+  FrameworkModuleRole role = 4;
+  repeated string owns = 5;
+  repeated string must_not_own = 6;
+  repeated string imports = 7;
+  repeated string exports = 8;
+  repeated string constraints = 9;
+  repeated string evidence_refs = 10;
+  TwinStatus status = 11;
+  google.protobuf.Timestamp observed_at = 12;
+}
+
+message FrameworkConformance {
+  string id = 1;
+  string module_twin_id = 2;
+  string check_name = 3;
+  ConformanceStatus status = 4;
+  repeated string evidence_refs = 5;
+  google.protobuf.Timestamp checked_at = 6;
+}
+
+message FrameworkReleaseTwin {
+  string id = 1;
+  string module_twin_id = 2;
+  string version = 3;
+  string source_commit = 4;
+  string digest = 5;
+  bool human_approved = 6;
+  repeated string evidence_refs = 7;
+  TwinStatus status = 8;
+  google.protobuf.Timestamp released_at = 9;
+}
+
+message FrameworkTwin {
+  string id = 1;
+  string name = 2;
+  string domain = 3;
+  repeated FrameworkModuleTwin modules = 4;
+  repeated FrameworkConformance conformance = 5;
+  repeated FrameworkReleaseTwin releases = 6;
+  repeated string constraints = 7;
+  TwinStatus status = 8;
+  google.protobuf.Timestamp observed_at = 9;
+}
